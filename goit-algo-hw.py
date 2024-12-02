@@ -36,7 +36,7 @@ class Record:
                 self.phones.remove(p)
 
     def edit_phone(self,old_phone, new_phone):
-        if old_phone in self.phones:
+        if old_phone in [p.value for p in self.phones]:
             for p in self.phones:
                 if p.value == old_phone:
                     p.value = new_phone
@@ -69,8 +69,11 @@ class AddressBook(UserDict):
 
 
     def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
-        
+        result = []
+        for record in self.data.values():
+            phones = ', '.join(phone.value for phone in record.phones)
+            result.append(f"Contact name: {record.name.value}, phones: {phones}")
+        return '\n'.join(result)
 
 	
 
