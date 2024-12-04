@@ -71,11 +71,10 @@ class AddressBook(UserDict):
     def __str__(self):
         result = []
         for record in self.data.values():
-            phones = ', '.join(phone.value for phone in record.phones)
-            result.append(f"Contact name: {record.name.value}, phones: {phones}")
+            result.append(str(record))
         return '\n'.join(result)
 
-	
+
 
 # Створення нової адресної книги
 book = AddressBook()
